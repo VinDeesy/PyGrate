@@ -1,0 +1,8 @@
+<pool type='gluster'>
+  <name>mc-gluster</name>
+  <source>
+    <host name='localhost'/>
+    <dir path='/'/>
+    <name>gv0</name>
+  </source>
+</pool>

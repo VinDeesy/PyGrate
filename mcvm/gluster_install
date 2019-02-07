@@ -1,0 +1,5 @@
+yum -y install centos-release-gluster
+yum -y install glusterfs-server
+systemctl enable glusterd
+systemctl start glusterd
+mkdir /home2/gv0

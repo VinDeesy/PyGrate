@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Restart {background: #b8c6df; /* Old browsers */
+background: -moz-linear-gradient(top, #b8c6df 0%, #6d88b7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #b8c6df 0%,#6d88b7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #b8c6df 0%,#6d88b7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8c6df', endColorstr='#6d88b7',GradientType=0 );}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+
+
+    </style>
+</head>
+<body>
+
+
+<button class="tablink" onclick="openPage('Migrate', this, 'green')" id="defaultOpen">Migrate</button>
+
+
+<div id="Migrate" class="tabcontent">
+    <h3>News</h3>
+    <form action="/tabs" method="POST">
+        <select id="vm" name="vm">
+            <h3>From</h3>
+            <option value="{{vms[0]}}" selected>{{vms[0]}}</option>
+            {% for vm in vms[1:] %}
+            <option value={{vm}}>{{vm}}</option>
+            {% endfor %}
+        </select>
+
+    </form>
+    <form action="/tabs" method="POST">
+        <select id="server" name="server">
+            <h3>To</h3>
+            <option value="{{servers[0]}}" selected>{{servers[0]}}</option>
+            {% for server in servers[1:] %}
+            <option value={{server}}>{{server}}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <input type='submit' value='Submit'>
+</div>
+
+
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html>
